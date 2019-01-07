@@ -1,0 +1,9 @@
+- name: Disable IPV6
+  become: yes
+  blockinfile:
+    path: /etc/modprobe.d/ipv6.conf
+    block: |
+      alias net-pf-10 off
+      alias ipv6 off
+      options ipv6 disable_ipv6=1
+      blacklist ipv6

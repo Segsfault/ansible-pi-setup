@@ -1,0 +1,21 @@
+# Set hostname for the pi based on inventory
+
+- name: Check for current hostname
+  shell: hostname
+  register: hostname_cmd
+  changed_when: false
+
+- name: Set the hostname if needed
+  become: yes
+  command: hostnamectl set-hostname "{{ inventory_hostname }}"
+  register: hostname
+  when: hostname_cmd.stdout != inventory_hostname
+
+- name: Update hosts
+  become: yes
+  replace:
+    path: /etc/hosts
+    regexp: '(\s+)raspberrypi(\s+.*)?$'
+    replace: '\1{{ inventory_hostname }}\2'
+
+
