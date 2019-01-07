@@ -1,0 +1,6 @@
+---
+- include_tasks: disable_hardware.yml
+- include_tasks: disable_ipv6.yml
+- include_tasks: clean_profiles.yml
+- include_tasks: disable_pi_user.yml
+- include_tasks: reboot.yml

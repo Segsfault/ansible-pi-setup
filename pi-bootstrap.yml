@@ -1,0 +1,26 @@
+---
+# ansible-playbook -i hosts -c paramiko pi-setup.yml
+
+- name: bootstrap nodes so we can ssh into them
+  hosts: all
+
+  vars:
+    ansible_user: pi
+    ansible_ssh_pass: raspberry
+
+  vars_prompt:
+  - name: "new_username"
+    prompt: Name of new account?
+    default: "{{ lookup('env','USER') }}"
+
+  - name: "new_password"
+    prompt: new password
+    private: yes
+    confirm: yes
+
+  - name: "ssh_public_key"
+    prompt: Enter the location of the public key file
+    default: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
+
+  roles:
+    - bootstrap

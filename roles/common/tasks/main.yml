@@ -1,0 +1,4 @@
+---
+- include_tasks: hostname.yml
+#- include_tasks: locale.yml
+#- include_tasks: update-core.yml

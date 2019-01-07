@@ -1,0 +1,24 @@
+- name: Create new user and generate ssh key
+  become: yes
+  user:
+    name: '{{ new_username }}'
+    password: '{{ "{{ new_password }}" | password_hash("sha512") }}'
+    generate_ssh_key: yes
+    shell: /bin/bash
+
+- name: make sure user can sudo
+  become: yes
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: '^{{ new_username }}'
+    line: '{{ new_username }} ALL=(ALL) NOPASSWD:ALL'
+    backup: yes
+    validate: 'visudo -q -c -f %s'
+
+
+- name: Configure easier ls via bash
+  become: yes
+  lineinfile:
+    path: "/home/{{ new_username }}/.bashrc"
+    regexp: "    alias ls"
+    line: "    alias ls='ls -la --color=auto'"

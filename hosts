@@ -1,0 +1,5 @@
+monitor ansible_host=10.10.1.100
+node-01 ansible_host=10.10.1.101
+node-02 ansible_host=10.10.1.102
+node-03 ansible_host=10.10.1.103
+node-04 ansible_host=10.10.1.104

@@ -1,0 +1,14 @@
+---
+# ansible-playbook -i hosts pi-setup.yml
+
+- name: apply common configuration to all nodes
+  hosts: all
+
+  vars:
+    locale: 'en_US.UTF-8'
+    charset: 'UTF-8'
+    timezone: 'US/Pacific'
+
+  roles:
+    - common
+    - slim

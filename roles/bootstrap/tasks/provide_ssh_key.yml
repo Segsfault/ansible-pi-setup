@@ -1,0 +1,9 @@
+- name: Set authorized key taken from file
+  become: yes
+  authorized_key:
+    user: "{{ new_username }}"
+    state: present
+    key: "{{ lookup('file', '{{ ssh_public_key }}') }}"
+
+
+

@@ -1,0 +1,7 @@
+- name: disable wifi and bluetooth
+  become: yes
+  blockinfile:
+    path: /boot/config.txt
+    block: |
+      dtoverlay=pi3-disable-wifi
+      dtoverlay=pi3-disable-bt

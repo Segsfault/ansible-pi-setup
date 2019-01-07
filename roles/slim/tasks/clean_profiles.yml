@@ -1,0 +1,11 @@
+- name: remove wifi country check
+  become: yes
+  file:
+    path: /etc/profile.d/wifi-country.sh
+    state: absent
+
+- name: remove pi password change check
+  become: yes
+  file:
+    path: /etc/profile.d/sshpwd.sh
+    state: absent

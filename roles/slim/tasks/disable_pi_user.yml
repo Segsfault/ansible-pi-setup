@@ -1,0 +1,6 @@
+- name: Delete the pi user
+  become: yes
+  user:
+    name: pi
+    state: absent
+    remove: yes
