@@ -2,6 +2,7 @@
   become: yes
   blockinfile:
     path: /etc/modprobe.d/ipv6.conf
+    create: yes
     block: |
       alias net-pf-10 off
       alias ipv6 off
